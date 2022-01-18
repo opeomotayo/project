@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: nexus
+    meta.helm.sh/release-namespace: nexus
+  labels:
+    app: sonatype-nexus
+    app.kubernetes.io/managed-by: Helm
+    chart: sonatype-nexus
+    fullname: nexus-sonatype-nexus
+    heritage: Helm
+    release: nexus
+  name: nexus-sonatype-nexus
+  namespace: nexus
+spec:
+  ports:
+  - name: nexus-sonatype-nexus
+    nodePort: 30004
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: sonatype-nexus
+    release: nexus
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
