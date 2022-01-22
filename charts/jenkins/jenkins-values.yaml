@@ -82,8 +82,8 @@ controller:
   #   - name: http_proxy
   #     value: "http://192.168.64.1:3128"
   containerEnv:
-    - name: CASC_JENKINS_CONFIG
-      value: /var/jenkins_home/casc_configs
+    # - name: CASC_JENKINS_CONFIG
+    #   value: /var/jenkins_home/casc_configs
     # - name: SECRETS
     #   value: /usr/share/jenkins/ref/secrets
   #   - name: http_proxy
@@ -904,14 +904,14 @@ additionalAgents:
 
 persistence:
   enabled: true
-  volumes:
-  - name: casc-config
-    configMap:
-      name: jenkins-casc-config
-  mounts:
-  - mountPath: /var/jenkins_home/casc_configs
-    name: casc-config
-    readOnly: true
+  # volumes:
+  # - name: casc-config
+  #   configMap:
+  #     name: jenkins-casc-config
+  # mounts:
+  # - mountPath: /var/jenkins_home/casc_configs
+  #   name: casc-config
+  #   readOnly: true
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
