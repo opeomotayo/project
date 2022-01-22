@@ -4,7 +4,7 @@ metadata:
   name: jenkins-casc-config
   namespace: jenkins
 data:
-  jenkins.yaml: |
+  jenkins-plugins-conf.yaml: |
     jenkins:
       systemMessage: "Hello Welcome! This is a configmap file"
       numExecutors: 1

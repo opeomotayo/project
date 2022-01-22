@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: usermanager
+  namespace: rancher
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod    # Specifies the Cluster Issuer to use
+    acme.cert-manager.io/http01-edit-in-place: "true"  # Tells Cert-Manager to override this ingress temporarily
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+    - hosts:
+      - rancher.demo.com
+      secretName: tls-rancher  # Secret name is used to dynamically generate the secret
+  rules:
+  - host: rancher.demo.com
+    http:
+      paths:
+      - backend:
+          serviceName: web
+          servicePort: 80

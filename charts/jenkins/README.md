@@ -1,6 +1,7 @@
 kubectl apply -f jenkins-volume.yaml
 kubectl -n jenkins apply -f jenkins-sa.yaml
 helm repo add jenkinsci https://charts.jenkins.io
+
 helm upgrade --install jenkins -n jenkins -f jenkins-values.yaml jenkinsci/jenkins
 
 printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo

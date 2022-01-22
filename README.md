@@ -60,7 +60,7 @@ kubectl get pods -l app.kubernetes.io/name=etcd -n=kube-system
 STEP6:
 <!-- Additional test commands. The etcd Pods and related objects are deployed in the kube-system Namespace which is also used by Portworx deployment. Use px-etcd cluster ip to check etcd version -->
 kubectl get svc -l app.kubernetes.io/name=etcd -n=kube-system
-curl -L http://10.106.97.31:2379/version -GET -v
+curl -L http://10.109.64.82:2379/version -GET -v
 curl -L http://px-etcd-0.kube-system.svc:2379/version -GET -v
 ETCDCTL_API=3 etcdctl --endpoints=http://127.0.0.1:2379 get "" --prefix --keys-only
 kubectl run px-etcd-client --restart='Never' --image docker.io/bitnami/etcd:3.4.15-debian-10-r33 --env ETCDCTL_ENDPOINTS="px-etcd.kube-system.svc.cluster.local:2379" --namespace kube-system --command -- sleep infinity

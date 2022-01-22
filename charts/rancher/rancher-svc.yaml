@@ -1,0 +1,169 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      auth.istio.io/8089: NONE
+      field.cattle.io/publicEndpoints: '[{"port":31358,"protocol":"TCP","serviceName":"rancher:cm-acme-http-solver-wqr4d","allNodes":true}]'
+    creationTimestamp: "2022-01-20T14:27:36Z"
+    generateName: cm-acme-http-solver-
+    labels:
+      acme.cert-manager.io/http-domain: "888866340"
+      acme.cert-manager.io/http-token: "1341460258"
+      acme.cert-manager.io/http01-solver: "true"
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:auth.istio.io/8089: {}
+          f:generateName: {}
+          f:labels:
+            .: {}
+            f:acme.cert-manager.io/http-domain: {}
+            f:acme.cert-manager.io/http-token: {}
+            f:acme.cert-manager.io/http01-solver: {}
+          f:ownerReferences:
+            .: {}
+            k:{"uid":"515cd712-37b2-44e5-89ca-d4f0e261cbcb"}:
+              .: {}
+              f:apiVersion: {}
+              f:blockOwnerDeletion: {}
+              f:controller: {}
+              f:kind: {}
+              f:name: {}
+              f:uid: {}
+        f:spec:
+          f:externalTrafficPolicy: {}
+          f:ports:
+            .: {}
+            k:{"port":8089,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector:
+            .: {}
+            f:acme.cert-manager.io/http-domain: {}
+            f:acme.cert-manager.io/http-token: {}
+            f:acme.cert-manager.io/http01-solver: {}
+          f:sessionAffinity: {}
+          f:type: {}
+      manager: controller
+      operation: Update
+      time: "2022-01-20T14:27:36Z"
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:field.cattle.io/publicEndpoints: {}
+      manager: rancher
+      operation: Update
+      time: "2022-01-20T14:30:52Z"
+    name: cm-acme-http-solver-wqr4d
+    namespace: rancher
+    ownerReferences:
+    - apiVersion: acme.cert-manager.io/v1alpha2
+      blockOwnerDeletion: true
+      controller: true
+      kind: Challenge
+      name: tls-rancher-2305482223-1201054974-1370595311
+      uid: 515cd712-37b2-44e5-89ca-d4f0e261cbcb
+    resourceVersion: "306958"
+    uid: 88670f7d-b2f7-4b26-91e0-da1d9023e8d1
+  spec:
+    clusterIP: 10.96.62.181
+    clusterIPs:
+    - 10.96.62.181
+    externalTrafficPolicy: Cluster
+    ports:
+    - name: http
+      nodePort: 31358
+      port: 8089
+      protocol: TCP
+      targetPort: 8089
+    selector:
+      acme.cert-manager.io/http-domain: "888866340"
+      acme.cert-manager.io/http-token: "1341460258"
+      acme.cert-manager.io/http01-solver: "true"
+    sessionAffinity: None
+    type: NodePort
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: rancher
+      meta.helm.sh/release-namespace: rancher
+    creationTimestamp: "2022-01-20T14:29:50Z"
+    labels:
+      app: rancher
+      app.kubernetes.io/managed-by: Helm
+      chart: rancher-2.6.3
+      heritage: Helm
+      release: rancher
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:meta.helm.sh/release-name: {}
+            f:meta.helm.sh/release-namespace: {}
+          f:labels:
+            .: {}
+            f:app: {}
+            f:app.kubernetes.io/managed-by: {}
+            f:chart: {}
+            f:heritage: {}
+            f:release: {}
+        f:spec:
+          f:ports:
+            .: {}
+            k:{"port":80,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+            k:{"port":443,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector:
+            .: {}
+            f:app: {}
+          f:sessionAffinity: {}
+          f:type: {}
+      manager: Go-http-client
+      operation: Update
+      time: "2022-01-20T14:29:50Z"
+    name: rancher
+    namespace: rancher
+    resourceVersion: "306635"
+    uid: 0723da9b-0829-4a82-a912-e3935dfb75fb
+  spec:
+    ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: https-internal
+      port: 443
+      protocol: TCP
+      targetPort: 444
+      nodePort: 30009
+    selector:
+      app: rancher
+    sessionAffinity: None
+    type: NodePort
+kind: List

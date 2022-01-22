@@ -83,7 +83,7 @@ controller:
   #     value: "http://192.168.64.1:3128"
   containerEnv:
     - name: CASC_JENKINS_CONFIG
-      value: /var/opt/casc_configs
+      value: /var/jenkins_home/casc_configs
     # - name: SECRETS
     #   value: /usr/share/jenkins/ref/secrets
   #   - name: http_proxy
@@ -909,7 +909,7 @@ persistence:
     configMap:
       name: jenkins-casc-config
   mounts:
-  - mountPath: /var/opt/casc_configs
+  - mountPath: /var/jenkins_home/casc_configs
     name: casc-config
     readOnly: true
   ## A manually managed Persistent Volume and Claim
