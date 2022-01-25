@@ -4,7 +4,7 @@ helm repo add jenkinsci https://charts.jenkins.io
 
 helm upgrade --install jenkins -n jenkins -f jenkins-values.yaml jenkinsci/jenkins
 
-printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
+
 
 avxJwpTQB3U27VZ0cBlL2r
 
