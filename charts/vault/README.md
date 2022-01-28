@@ -1,3 +1,4 @@
+helm repo add hashicorp https://helm.releases.hashicorp.com
 helm upgrade --install vault hashicorp/vault -n vault -f vault-values.yaml
 
 kubectl -n vault exec -it vault-0 -- vault operator init
@@ -11,9 +12,9 @@ token: s.HJNzvS8csSYmvdS71CtEZlhW
 
 kubectl -n vault exec -it vault-0 -- vault operator init
 kubectl -n vault exec -it vault-0 -- sh
-$ VAULT_ADDR=http://192.168.56.50:30004 vault status
-VAULT_ADDR=http://192.168.56.50:30004 vault operator unseal
-VAULT_ADDR=http://192.168.56.50:30004 vault login
+$ VAULT_ADDR=http://192.168.56.50:30001 vault status
+VAULT_ADDR=http://192.168.56.50:30001 vault operator unseal
+VAULT_ADDR=http://192.168.56.50:30001 vault login
 
 
 

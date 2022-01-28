@@ -1,27 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: jenkins
+  name: vault
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/opeomotayo/project.git
     targetRevision: HEAD
-    path: charts/jenkins
-    plugin:
-      name: argocd-vault-plugin-helm
-      env:
-        - name: RELEASE_NAME
-          value: jenkins
-        - name: NAMESPACE
-          value: jenkins
-        - name: VALUES_FILE
-          value: jenkins-values.yaml
+    path: charts/vault
+    # plugin:
+    #   name: argocd-vault-plugin-helm
+    #   env:
+    #     - name: RELEASE_NAME
+    #       value: vault
+    #     - name: NAMESPACE
+    #       value: vault
+    #     - name: VALUES_FILE
+    #       value: vault-values.yaml
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: jenkins
+    namespace: vault
 
   syncPolicy:
     syncOptions:
