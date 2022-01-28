@@ -6,26 +6,21 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/opeomotayo/project.git
-    targetRevision: HEAD
-    path: charts/vault
-    # plugin:
-    #   name: argocd-vault-plugin-helm
-    #   env:
-    #     - name: RELEASE_NAME
-    #       value: vault
-    #     - name: NAMESPACE
-    #       value: vault
-    #     - name: VALUES_FILE
-    #       value: vault-values.yaml
-
+    repoURL: 'https://helm.releases.hashicorp.com'
+    targetRevision: 0.19.0
+    helm:
+      parameters:
+        - name: ui.serviceType
+          value: NodePort
+        - name: ui.serviceNodePort
+          value: '30001'
+    chart: vault
   destination:
-    server: https://kubernetes.default.svc
+    server: 'https://kubernetes.default.svc'
     namespace: vault
-
   syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
