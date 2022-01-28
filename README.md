@@ -1,3 +1,5 @@
+https://ohmyz.sh
+
 STEP1:
 <!-- In case you do not have helm here is the installation procedure, as I will be using helm later on: -->
 {

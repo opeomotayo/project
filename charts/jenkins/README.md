@@ -1,12 +1,17 @@
+**********************
+add jenkins-sa.yaml for jenkins serviceaccount
+
+
+***********************
 kubectl apply -f jenkins-volume.yaml
 kubectl -n jenkins apply -f jenkins-sa.yaml
 helm repo add jenkinsci https://charts.jenkins.io
 
 helm upgrade --install jenkins -n jenkins -f jenkins-values.yaml jenkinsci/jenkins
 
-
-
 avxJwpTQB3U27VZ0cBlL2r
+*****************
+
 
 https://github.com/jenkinsci/configuration-as-code-plugin
 https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
