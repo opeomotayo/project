@@ -1,3 +1,8 @@
+Added helm repo in argocd
+Create the app manually in argocd the copy the manifest over
+
+
+
 kubectl patch storageclass nfs-client -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
 kubectl -n jenkins exec -it jenkins-0 -c config-reload -- cat /var/jenkins_home/casc_configs/jcasc-default-config.yaml kubectl -n jenkins exec -it jenkins-0 -c jenkins -- cat /var/jenkins_home/casc_configs/jcasc-default-config.yaml

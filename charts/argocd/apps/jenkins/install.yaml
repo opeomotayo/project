@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jenkins
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://charts.jenkins.io'
+    targetRevision: 3.11.3
+    helm:
+      parameters:
+        - name: persistence.storageClass
+          value: nfs-client
+        - name: persistence.size
+          value: 8Gi
+        - name: agent.resources.requests.cpu
+          value: 50m
+        - name: agent.resources.requests.memory
+          value: 64Mi
+        - name: controller.resources.requests.memory
+          value: 64Mi
+        - name: controller.serviceType
+          value: NodePort
+        - name: controller.nodePort
+          value: '30002'
+    chart: jenkins
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: jenkins
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

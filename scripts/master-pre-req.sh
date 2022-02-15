@@ -59,7 +59,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 mkdir -p /home/vagrant/.kube
 sudo cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 sudo chown $(id -u vagrant):$(id -g vagrant) /home/vagrant/.kube/config
-
+sudo chown -R vagrant:vagrant ~/.kube
 ###### deploy calico
 
 curl https://docs.projectcalico.org/manifests/calico.yaml -O

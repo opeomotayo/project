@@ -12,8 +12,24 @@ spec:
       parameters:
         - name: ui.serviceType
           value: NodePort
+        - name: ui.enabled
+          value: 'true'
+        - name: ui.externalPort
+          value: '8200'
         - name: ui.serviceNodePort
           value: '30001'
+        - name: server.dataStorage.storageClass
+          value: nfs-client
+        - name: server.auditStorage.storageClass
+          value: nfs-client
+        - name: server.auditStorage.size
+          value: 1Gi
+        - name: server.dataStorage.size
+          value: 1Gi
+        - name: injector.agentDefaults.cpuLimit
+          value: 50m
+        - name: injector.agentDefaults.memRequest
+          value: 32Mi
     chart: vault
   destination:
     server: 'https://kubernetes.default.svc'

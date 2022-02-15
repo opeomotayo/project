@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nfs
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/'
+    targetRevision: 4.0.15
+    helm:
+      parameters:
+        - name: nfs.server
+          value: 192.168.56.50
+        - name: nfs.path
+          value: /srv/nfs/kubedata
+        - name: storageClass.archiveOnDelete
+          value: 'false'
+    chart: nfs-subdir-external-provisioner
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: nfs
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
