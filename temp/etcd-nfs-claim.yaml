@@ -1,0 +1,30 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: etcd-backup-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs-client
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: etcd-backup-pod
+spec:
+  volumes:
+    - name: etcd-backup
+      persistentVolumeClaim:
+        claimName: etcd-backup-pvc
+  containers:
+    - name: inspector
+      image: bitnami/minideb
+      command:
+        - sleep
+        - infinity
+      volumeMounts:
+        - mountPath: "/backup"
+          name: etcd-backup
