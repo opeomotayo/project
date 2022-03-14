@@ -161,9 +161,6 @@ spec:
       storage: 1Gi
       ...
 
-
-
-
 kubectl apply -f etcd-volumes/etcd-nfs-claim.yaml -n kube-system
 
 kubectl cp etcd-volumes/mybackup kube-system/etcd-backup-pod:/backup/mybackup
